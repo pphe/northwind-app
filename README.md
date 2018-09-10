@@ -19,7 +19,6 @@
   </ul>
 </div>
 
-
 <div>
   <h3>To Do</h3>
   <ul>
