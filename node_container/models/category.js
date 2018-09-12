@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({
-    _id: Schema.Types.ObjectId,
-    CategoryID: { type: Number, required: true },
-    CategoryName: { type: String, required: true },
+    CategoryID: { type: Number, required: true, unique: true },
+    CategoryName: { type: String, required: true, unique: true },
     Description: String,
     Picture: String
 });
