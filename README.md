@@ -12,8 +12,8 @@
 - Implement REST API with Node.js
   - [x] Database class for Mongoose
   - [x] Create data models
-  - [ ] Service layer to simplify database queries
   - [ ] Routing
+  - [ ] Service layer to simplify database queries
   - [ ] Test API
   - [ ] \(Optional) Look into test libraries for experience
 
