@@ -6,10 +6,11 @@ const app = express();
 const port = process.env.SERVER_PORT || 3000;
 
 // middleware
-app.use('/northwind', require('./router/data-router'));
+app.use('/northwind/category', require('./routes/category-router'));
+app.use('/northwind/customer', require('./routes/customer-router'));
 
-// redirect invalid paths to /northwind
-app.use('/*', (req, res) => res.redirect('/northwind'));
+// response for invalid paths
+app.use('/*', (req, res) => res.json('Nothing to see here :('));
 
 app.listen(port, () => {
     console.log('Express server started on port', port);
