@@ -1,20 +1,28 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
 import Category from './components/Category';
+import Order from './components/Order';
+import Customer from './components/Customer';
+import Home from './components/Home';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
         <BrowserRouter>
-          <Route exact path="/" component={NavigationBar} />
+          <div className="App">
+            <NavigationBar />
+              <Route exact path="/category" component={Category} />
+              <Route exact path="/order" component={Order} />
+              <Route exact path="/customer" component={Customer} />
+         
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Redirect to='/' />
+              </Switch>
+
+          </div>
         </BrowserRouter>
-{/* ooooooh!! */}
-        <BrowserRouter>
-          <Route exact path="/category" component={Category} />
-        </BrowserRouter>
-      </div>
     );
   }
 }

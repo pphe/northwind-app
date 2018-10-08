@@ -4,7 +4,7 @@ import Home from './Home';
 import Order from './Order';
 import Category from './Category';
 import Customer from './Customer';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 
 class NavigationBar extends React.Component {
     // is a constructor needed? or move up to App to track which..
@@ -36,11 +36,15 @@ class NavigationBar extends React.Component {
                     </Nav>
                 </Navbar>
 
-                {this.state.activeKey === 1 ? <Home /> : null}
-                {this.state.activeKey === 2 ? <Order /> : null}
-                {this.state.activeKey === 3 ? <Redirect to='/category'></Redirect> : null}
+                {/* {this.state.activeKey === 1 ? <Home /> : null}
+                {this.state.activeKey === 2 ? <Order /> : null} */}
+                  {this.state.activeKey === 1 ? <Redirect to='/' /> : null}
+                  {this.state.activeKey === 2 ? <Redirect to='/order' /> : null}
+                  {this.state.activeKey === 3 ? <Redirect to='/category'></Redirect> : null}
+                  {this.state.activeKey === 4 ? <Redirect to='/customer' /> : null}
+      
                 {/* {this.state.activeKey === 3 ? <Category /> : null} */}
-                {this.state.activeKey === 4 ? <Customer /> : null}
+                {/* {this.state.activeKey === 4 ? <Customer /> : null} */}
             </div>
 
         );
