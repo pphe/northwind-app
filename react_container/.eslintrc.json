@@ -1,0 +1,10 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "parser": "babel-eslint",
+    "rules": {
+        "no-console": "off",
+        "indent": "off",
+        "comma-dangle": ["error", { "objects": "only-multiline" }],
+        "class-methods-use-this": 0
+    }
+}
