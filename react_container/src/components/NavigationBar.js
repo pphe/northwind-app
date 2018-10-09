@@ -1,23 +1,8 @@
 import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import Home from './Home';
-import Order from './Order';
-import Category from './Category';
-import Customer from './Customer';
-import { Redirect, Switch } from 'react-router-dom';
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 class NavigationBar extends React.Component {
-    // is a constructor needed? or move up to App to track which..
-    constructor(props) {
-        super(props);
-        this.state = { activeKey: 1 }
-    }
-
-    handleSelect(eventKey, event) {
-        this.setState({ activeKey: eventKey });
-        // event.preventDefault();
-    }
-
     render() {
         return (
             <div>
@@ -28,23 +13,24 @@ class NavigationBar extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
 
-                    <Nav bsStyle="tabs" activeKey="1" onSelect={key => this.handleSelect(key)}>
-                        <NavItem eventKey={1}>Home</NavItem>
-                        <NavItem eventKey={2}>Orders</NavItem>
-                        <NavItem eventKey={3}>Categories</NavItem>
-                        <NavItem eventKey={4}>Customers</NavItem>
+                    <Nav bsStyle="tabs">
+                        <IndexLinkContainer to="/">
+                            <NavItem>Home</NavItem>
+                        </IndexLinkContainer>
+
+                        <LinkContainer to="/order">
+                            <NavItem>Orders</NavItem>
+                        </LinkContainer>
+
+                        <LinkContainer to="/category">
+                            <NavItem>Categories</NavItem>
+                        </LinkContainer>
+
+                        <LinkContainer to="/customer">
+                            <NavItem>Customers</NavItem>
+                        </LinkContainer>
                     </Nav>
                 </Navbar>
-
-                {/* {this.state.activeKey === 1 ? <Home /> : null}
-                {this.state.activeKey === 2 ? <Order /> : null} */}
-                  {this.state.activeKey === 1 ? <Redirect to='/' /> : null}
-                  {this.state.activeKey === 2 ? <Redirect to='/order' /> : null}
-                  {this.state.activeKey === 3 ? <Redirect to='/category'></Redirect> : null}
-                  {this.state.activeKey === 4 ? <Redirect to='/customer' /> : null}
-      
-                {/* {this.state.activeKey === 3 ? <Category /> : null} */}
-                {/* {this.state.activeKey === 4 ? <Customer /> : null} */}
             </div>
 
         );

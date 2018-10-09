@@ -15,7 +15,7 @@ class Order extends React.Component {
     render() {
         return (
             <div>
-                order component 
+                order component
                 {this.state.data}
             </div>
         );
