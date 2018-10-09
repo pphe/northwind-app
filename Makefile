@@ -12,10 +12,9 @@ mongo_stop:
 	docker stop $(DB_IMAGE_NAME)
 
 mongo_reset:
-	docker stop $(DB_IMAGE_NAME)
-	docker rm $(DB_IMAGE_NAME)
+	-docker stop $(DB_IMAGE_NAME)
+	-docker rm $(DB_IMAGE_NAME)
 
 mongo_load_data: 
 	(cd $(DB_DATA_DIR) && ./mongo-import.sh)
-
 
