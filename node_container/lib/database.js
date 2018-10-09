@@ -10,7 +10,9 @@ class Database {
     }
 
     connect() {
-        mongoose.connect(`mongodb://${dbHost}/${dbName}`, { useNewUrlParser: true })
+        mongoose.set('useCreateIndex', true);
+        mongoose.set('useNewUrlParser', true);
+        mongoose.connect(`mongodb://${dbHost}/${dbName}`)
             .then(() => {
                 console.log(`Connected to ${dbName} database`);
             })
