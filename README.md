@@ -20,6 +20,6 @@
 - Implement REST API with Spring Boot
   - Details TBD
     
-- Write front-end components - React or Angular?
+- Write front-end components - React
   - Details TBD
 
