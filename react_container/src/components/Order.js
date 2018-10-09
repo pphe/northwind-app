@@ -9,18 +9,46 @@ class Order extends React.Component {
 
     componentDidMount() {
         axios.get('/api/order')
-            .then(res => this.setState({ data: res.data }));
+            .then(res => {
+                const orders = res.data.map(item => {
+                    return (
+                        <li key={item.OrderID}>
+                            Order ID: {item.OrderID} |
+                            Order Date: {item.OrderDate}<br />
+                        </li>
+                    )
+                });
+
+                this.setState({ data: orders })
+            });
     }
 
     render() {
         return (
             <div>
-                order component
-                {this.state.data}
+                order component<br />
+                {this.state.data[0]}
             </div>
         );
     }
 }
+
+/*
+    OrderID: { type: Number, required: true, unique: true },
+    CustomerID: { type: String, required: true },
+    EmployeeID: { type: Number, required: true },
+    OrderDate: { type: String, required: true },
+    RequiredDate: { type: String, required: true },
+    ShippedDate: { type: String, required: true },
+    ShipVia: { type: String, required: true },
+    Freight: { type: Number, required: true },
+    ShipName: { type: String, required: true },
+    ShipAddress: { type: String, required: true },
+    ShipCity: { type: Number, required: true },
+    ShipRegion: { type: String, required: true },
+    ShipPostalCode: { type: String, required: true },
+    ShipCountry: { type: String, required: true }
+*/
 
 
 export default Order;
