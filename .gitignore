@@ -2,3 +2,4 @@
 .*.swo
 node_container/node_modules
 node_container/.env
+.vscode
