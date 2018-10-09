@@ -21,5 +21,8 @@
   - Details TBD
     
 - Write front-end components - React
-  - Details TBD
-
+  - [x] NavigationBar
+  - [ ] Orders
+  - [ ] Categories
+  - [ ] Customers
+  - [ ] etc..
