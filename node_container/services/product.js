@@ -10,8 +10,8 @@ function findById(req, res) {
     const { productId } = req.params;
 
     ProductModel.find({ ProductID: productId })
-        .catch(results => res.json(results))
-        .then(err => res.json(`Error: ${err}`));
+        .then(results => res.json(results))
+        .catch(err => res.json(`Error: ${err}`));
 }
 
 module.exports = {
