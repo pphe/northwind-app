@@ -11,6 +11,7 @@ app.use('/api/customer', require('./routes/customer'));
 app.use('/api/employee-territory', require('./routes/employee-territory'));
 app.use('/api/order-detail', require('./routes/order-detail'));
 app.use('/api/order', require('./routes/order'));
+app.use('/api/product', require('./routes/product'));
 
 // response for invalid paths
 app.use('/*', (req, res) => res.json('Nothing to see here :('));
