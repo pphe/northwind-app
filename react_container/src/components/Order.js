@@ -8,17 +8,23 @@ class Order extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/order')
-            .then(res => this.setState({ data: res.data }));
+        const { match: { params } } = this.props;
+        params.orderId ?
+            axios.get(`/api/test/${params.orderId}`)
+                .then(res => this.setState({ data: res.data }))
+            :
+            axios.get('/api/order')
+                .then(res => this.setState({ data: res.data }));
+
     }
 
     render() {
         const orders = this.state.data.map(item => {
             return (
-                <li key={item.OrderID}>
+                <span key={item.OrderID}>
                     Order ID: {item.OrderID} |
-                    Order Date: {item.OrderDate}
-                </li>
+                    Order Date: {item.OrderDate}<br />
+                </span>
             );
         });
 
