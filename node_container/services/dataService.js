@@ -1,0 +1,23 @@
+const OrderModel = require('../models/order');
+const OrderDetailModel = require('../models/order-detail');
+const ProductModel = require('../models/product');
+const CategoryModel = require('../models/category');
+
+function getOrderDetailsByOrderId(req, res) {
+    const { orderId } = req.params;
+
+    OrderModel.find({ OrderID: orderId }).then((order) => {
+        // simple way to mutate data (no longer a mongoose model)
+        const data = JSON.parse(JSON.stringify(order[0]));
+
+        OrderDetailModel.find({ OrderID: orderId }).then((details) => {
+            data.OrderDetails = [];
+            details.forEach(detail => data.OrderDetails.push(detail));
+            res.json(data);
+        }).catch(err => res.json(`Err: ${err}`));
+    }).catch(err => res.json(`Err: ${err}`));
+}
+
+module.exports = {
+    getOrderDetailsByOrderId
+};

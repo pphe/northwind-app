@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.SERVER_PORT || 3000;
 
 // middleware
+app.use('/api/test', require('./routes/dataService'));
 app.use('/api/category', require('./routes/category'));
 app.use('/api/customer', require('./routes/customer'));
 app.use('/api/employee-territory', require('./routes/employee-territory'));
