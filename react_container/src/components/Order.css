@@ -1,0 +1,16 @@
+.Collapsible {
+    /* border: 1px solid  darkslategray; */
+    /* background-color: #5AF; */
+    background-color: lightgray;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    color: black;
+    border: 1px line black;
+    /* border-radius: 6px; */
+}
+
+.collapsible-content {
+    background-color: ghostwhite;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}

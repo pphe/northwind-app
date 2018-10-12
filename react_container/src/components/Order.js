@@ -1,5 +1,14 @@
 import React from 'react';
+import Collapsible from 'react-collapsible';
+import PropTypes from 'prop-types';
 import axios from 'axios';
+import './Order.css';
+import OrderDetail from './OrderDetail';
+
+// inline style example - set style={styleName} in tag
+// const spanStyle = {
+//     color: 'red'
+// };
 
 class Order extends React.Component {
     constructor(props) {
@@ -8,34 +17,46 @@ class Order extends React.Component {
     }
 
     componentDidMount() {
-        const { match: { params } } = this.props;
-        params.orderId ?
-            axios.get(`/api/test/${params.orderId}`)
+        const { orderId } = this.props.match.params;
+        orderId ?
+            axios.get(`/api/order/${orderId}`)
                 .then(res => this.setState({ data: res.data }))
+                .catch(err => console.log(`Err: ${err}`))
             :
             axios.get('/api/order')
-                .then(res => this.setState({ data: res.data }));
-
+                .then(res => this.setState({ data: res.data }))
+                .catch(err => console.log(`Err: ${err}`));
     }
 
     render() {
         const orders = this.state.data.map(item => {
             return (
-                <span key={item.OrderID}>
-                    Order ID: {item.OrderID} |
-                    Order Date: {item.OrderDate}<br />
-                </span>
+                <Collapsible key={item.OrderID} trigger={`Order #${item.OrderID}`}>
+                    <div className="collapsible-content">
+                        <OrderDetail orderId={`${item.OrderID}`} />
+                    </div>
+                </Collapsible>
             );
         });
 
         return (
             <div>
-                order component<br />
                 {orders}
             </div>
         );
     }
 }
+
+Order.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            orderId: PropTypes.oneOfType([
+                PropTypes.number,
+                PropTypes.string])
+        })
+    })
+};
+
 /*
     OrderID: { type: Number, required: true, unique: true },
     CustomerID: { type: String, required: true },
