@@ -23,6 +23,10 @@
 - Write front-end components - React
   - [x] NavigationBar
   - [ ] Orders
+  - [ ]   -Basic Styling
+  - [ ]   -Only load order details for expanded items
+  - [ ] Order Details
+  - [ ] Product 
   - [ ] Categories
   - [ ] Customers
   - [ ] etc..
