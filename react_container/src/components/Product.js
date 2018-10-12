@@ -19,18 +19,18 @@ class Product extends React.Component {
     render() {
         const products = this.state.data.map(item => {
             return (
-                <div key={`${item.ProductID}`}>
-                    <li>Product Name: ${item.ProductName}</li>
-                    <li>Unit Price: ${item.UnitPrice}</li>
-                    <li>In Stock: ${item.UnitsInStock}</li>
-                </div>
+                <React.Fragment key={`${item.ProductID}`}>
+                    <li>Product Name: {item.ProductName}</li>
+                    <li>Price: ${Number(item.UnitPrice).toFixed(2)}</li>
+                    <li>In Stock: {item.UnitsInStock}</li>
+                </React.Fragment>
             );
         })
 
         return (
-            <div>
+            <React.Fragment>
                 {products}
-            </div>
+            </React.Fragment>
         );
     }
 }

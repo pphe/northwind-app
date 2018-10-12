@@ -22,25 +22,22 @@ class OrderDetail extends React.Component {
             return (
                 <p key={item.ProductID}>
                     <li>Product ID: {item.ProductID}</li>
-                    {/* <Product productId={`${item.ProductID}`} /> */}
-                    <li>Quantity: {item.Quantity}</li>
+                    <Product productId={item.ProductID} />
+                    <li>Qty: {item.Quantity}</li>
                 </p>
             );
         });
 
         return (
-            <div>
+            <React.Fragment>
                 {details}
-            </div>
+            </React.Fragment>
         );
     }
 }
 
 OrderDetail.propTypes = {
-    orderId: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ])
+    orderId: PropTypes.number
 }
 
 export default OrderDetail;

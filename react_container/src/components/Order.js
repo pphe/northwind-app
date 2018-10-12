@@ -5,11 +5,6 @@ import axios from 'axios';
 import './Order.css';
 import OrderDetail from './OrderDetail';
 
-// inline style example - set style={styleName} in tag
-// const spanStyle = {
-//     color: 'red'
-// };
-
 class Order extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +13,12 @@ class Order extends React.Component {
 
     componentDidMount() {
         const { orderId } = this.props.match.params;
-        orderId ?
-            axios.get(`/api/order/${orderId}`)
+        
+        orderId
+        ? axios.get(`/api/order/${orderId}`)
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => console.log(`Err: ${err}`))
-            :
-            axios.get('/api/order')
+        : axios.get('/api/order')
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => console.log(`Err: ${err}`));
     }
@@ -31,18 +26,17 @@ class Order extends React.Component {
     render() {
         const orders = this.state.data.map(item => {
             return (
-                <Collapsible key={item.OrderID} trigger={`Order #${item.OrderID}`}>
-                    <div className="collapsible-content">
-                        <OrderDetail orderId={`${item.OrderID}`} />
-                    </div>
+                <Collapsible key={item.OrderID} trigger={`Order #${item.OrderID}`}
+                    lazyRender={true}>
+                        <OrderDetail className="collapsible-content" orderId={item.OrderID} />
                 </Collapsible>
             );
         });
 
         return (
-            <div>
+            <React.Fragment>
                 {orders}
-            </div>
+            </React.Fragment>
         );
     }
 }
@@ -51,7 +45,6 @@ Order.propTypes = {
     match: PropTypes.shape({
         params: PropTypes.shape({
             orderId: PropTypes.oneOfType([
-                PropTypes.number,
                 PropTypes.string])
         })
     })

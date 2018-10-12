@@ -2,15 +2,15 @@
     /* border: 1px solid  darkslategray; */
     /* background-color: #5AF; */
     background-color: lightgray;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
     color: black;
     border: 1px line black;
     /* border-radius: 6px; */
 }
 
-.collapsible-content {
+.Collapsible__contentInner {
     background-color: ghostwhite;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 12px;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-size: 13px;
 }
