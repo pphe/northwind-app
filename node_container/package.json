@@ -6,7 +6,8 @@
   "scripts": {
     "test": "eslint . --fix",
     "lint": "eslint .",
-    "build": "babel --ignore node_modules/ -d build ."
+    "build": "babel --ignore node_modules/ -d build .",
+    "dev-start": "nodemon app.js"
   },
   "keywords": [],
   "author": "Peter Phe",

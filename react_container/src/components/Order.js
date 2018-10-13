@@ -11,14 +11,23 @@ class Order extends React.Component {
         this.state = { data: [] };
     }
 
+    static propTypes = {
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                orderId: PropTypes.oneOfType([
+                    PropTypes.string])
+            })
+        })
+    }
+
     componentDidMount() {
         const { orderId } = this.props.match.params;
-        
+
         orderId
-        ? axios.get(`/api/order/${orderId}`)
+            ? axios.get(`/api/order/${orderId}`)
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => console.log(`Err: ${err}`))
-        : axios.get('/api/order')
+            : axios.get('/api/order')
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => console.log(`Err: ${err}`));
     }
@@ -28,7 +37,11 @@ class Order extends React.Component {
             return (
                 <Collapsible key={item.OrderID} trigger={`Order #${item.OrderID}`}
                     lazyRender={true}>
-                        <OrderDetail className="collapsible-content" orderId={item.OrderID} />
+                    {/* note to self: if only OrderDetail is here && lazyRender is true,
+                                      need to click twice on Collapsible in browser to render 
+                                        => async issue? empty/no children? */}
+                    <h5>Customer ID: {item.CustomerID}</h5>
+                    <OrderDetail className="collapsible-content" orderId={item.OrderID}/>
                 </Collapsible>
             );
         });
@@ -40,31 +53,5 @@ class Order extends React.Component {
         );
     }
 }
-
-Order.propTypes = {
-    match: PropTypes.shape({
-        params: PropTypes.shape({
-            orderId: PropTypes.oneOfType([
-                PropTypes.string])
-        })
-    })
-};
-
-/*
-    OrderID: { type: Number, required: true, unique: true },
-    CustomerID: { type: String, required: true },
-    EmployeeID: { type: Number, required: true },
-    OrderDate: { type: String, required: true },
-    RequiredDate: { type: String, required: true },
-    ShippedDate: { type: String, required: true },
-    ShipVia: { type: String, required: true },
-    Freight: { type: Number, required: true },
-    ShipName: { type: String, required: true },
-    ShipAddress: { type: String, required: true },
-    ShipCity: { type: Number, required: true },
-    ShipRegion: { type: String, required: true },
-    ShipPostalCode: { type: String, required: true },
-    ShipCountry: { type: String, required: true }
-*/
 
 export default Order;

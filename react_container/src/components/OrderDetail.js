@@ -10,6 +10,10 @@ class OrderDetail extends React.Component {
         this.state = { data: [] };
     }
 
+    static propTypes = {
+        orderId: PropTypes.number
+    }
+
     componentDidMount() {
         const { orderId } = this.props;
         axios.get(`/api/order-detail/${orderId}`)
@@ -34,10 +38,6 @@ class OrderDetail extends React.Component {
             </React.Fragment>
         );
     }
-}
-
-OrderDetail.propTypes = {
-    orderId: PropTypes.number
 }
 
 export default OrderDetail;

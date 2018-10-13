@@ -9,6 +9,10 @@ class Product extends React.Component {
         this.state = { data: [] };
     }
 
+    static propTypes = {
+        productId: PropTypes.number
+    }
+
     componentDidMount() {
         const { productId } = this.props;
         axios.get(`/api/product/${productId}`)
@@ -33,10 +37,6 @@ class Product extends React.Component {
             </React.Fragment>
         );
     }
-}
-
-Product.propTypes = {
-    productId: PropTypes.number
 }
 
 export default Product;
