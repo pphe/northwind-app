@@ -11,15 +11,6 @@ class Order extends React.Component {
         this.state = { data: [] };
     }
 
-    static propTypes = {
-        match: PropTypes.shape({
-            params: PropTypes.shape({
-                orderId: PropTypes.oneOfType([
-                    PropTypes.string])
-            })
-        })
-    }
-
     componentDidMount() {
         const { orderId } = this.props.match.params;
 
@@ -41,7 +32,7 @@ class Order extends React.Component {
                                       need to click twice on Collapsible in browser to render 
                                         => async issue? empty/no children? */}
                     <h5>Customer ID: {item.CustomerID}</h5>
-                    <OrderDetail className="collapsible-content" orderId={item.OrderID}/>
+                    <OrderDetail className="collapsible-content" orderId={item.OrderID} />
                 </Collapsible>
             );
         });
@@ -53,5 +44,14 @@ class Order extends React.Component {
         );
     }
 }
+
+Order.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            orderId: PropTypes.oneOfType([
+                PropTypes.string])
+        })
+    })
+};
 
 export default Order;

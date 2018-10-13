@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './Product.css';
 
 class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = { data: [] };
-    }
-
-    static propTypes = {
-        productId: PropTypes.number
     }
 
     componentDidMount() {
@@ -38,5 +33,9 @@ class Product extends React.Component {
         );
     }
 }
+
+Product.propTypes = {
+    productId: PropTypes.number
+};
 
 export default Product;
