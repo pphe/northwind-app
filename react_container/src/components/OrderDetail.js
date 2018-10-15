@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import axios from 'axios';
-import './styles/OrderDetail.css';
-import Product from './Product';
+// import Product from './Product';
 
 class OrderDetail extends React.Component {
     constructor(props) {
@@ -19,10 +19,16 @@ class OrderDetail extends React.Component {
 
     render() {
         const details = this.state.data.map(item => {
+            const productId = item.ProductID;
             return (
-                <p key={item.ProductID}>
-                    <li>Product ID: {item.ProductID}</li>
-                    <Product productId={item.ProductID} />
+                // <ListGroup key={productId}>
+                //     <ListGroupItem>Product ID: {productId}</ListGroupItem>
+                //     {/* <Product productId={productId} /> */}
+                //     <ListGroupItem>Qty: {item.Quantity}</ListGroupItem>
+                // </ListGroup>
+                <p key={productId}>
+                    <li>Product ID: {productId}</li>
+                    {/* <Product productId={productId} /> */}
                     <li>Qty: {item.Quantity}</li>
                 </p>
             );

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ListGroupItem } from 'react-bootstrap';
 import axios from 'axios';
 
 class Product extends React.Component {
@@ -19,9 +20,9 @@ class Product extends React.Component {
         const products = this.state.data.map(item => {
             return (
                 <React.Fragment key={`${item.ProductID}`}>
-                    <li>Product Name: {item.ProductName}</li>
-                    <li>Price: ${Number(item.UnitPrice).toFixed(2)}</li>
-                    <li>In Stock: {item.UnitsInStock}</li>
+                    <ListGroupItem>Product Name: {item.ProductName}</ListGroupItem>
+                    <ListGroupItem>Price: ${Number(item.UnitPrice).toFixed(2)}</ListGroupItem>
+                    <ListGroupItem>In Stock: {item.UnitsInStock}</ListGroupItem>
                 </React.Fragment>
             );
         })

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Panel, PanelGroup, ListGroup } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import LazyLoad from 'react-lazyload';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './styles/Order.css';
 import OrderDetail from './OrderDetail';
 
 class Order extends React.Component {
@@ -34,10 +33,11 @@ class Order extends React.Component {
                             Order #{orderId}
                         </Panel.Title>
                     </Panel.Heading>
+
                     <LazyLoad height={0} offset={100} once>
-                    <Panel.Body collapsible>
+                        <Panel.Body collapsible>
                             <OrderDetail orderId={orderId} />
-                    </Panel.Body>
+                        </Panel.Body>
                     </LazyLoad>
                 </Panel>
             );
