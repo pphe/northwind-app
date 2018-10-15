@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import NavigationBar from './components/NavigationBar';
-import Home from './components/Home';
-import Category from './components/Category';
-import Order from './components/Order';
-import Customer from './components/Customer';
+import { NavigationBar, Home, Category, Order, Customer } from './components';
 
 class App extends React.Component {
     render() {

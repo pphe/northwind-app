@@ -2,7 +2,7 @@ import React from 'react';
 import Collapsible from 'react-collapsible';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './Order.css';
+import './styles/Order.css';
 import OrderDetail from './OrderDetail';
 
 class Order extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './OrderDetail.css';
+import './styles/OrderDetail.css';
 import Product from './Product';
 
 class OrderDetail extends React.Component {
