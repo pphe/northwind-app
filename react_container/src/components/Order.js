@@ -1,5 +1,6 @@
 import React from 'react';
-import Collapsible from 'react-collapsible';
+import { Panel, PanelGroup, ListGroup } from 'react-bootstrap';
+import LazyLoad from 'react-lazyload';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './styles/Order.css';
@@ -25,15 +26,20 @@ class Order extends React.Component {
 
     render() {
         const orders = this.state.data.map(item => {
+            const orderId = item.OrderID;
             return (
-                <Collapsible key={item.OrderID} trigger={`Order #${item.OrderID}`}
-                    lazyRender={true}>
-                    {/* note to self: if only OrderDetail is here && lazyRender is true,
-                                      need to click twice on Collapsible in browser to render 
-                                        => async issue? empty/no children? */}
-                    <h5>Customer ID: {item.CustomerID}</h5>
-                    <OrderDetail className="collapsible-content" orderId={item.OrderID} />
-                </Collapsible>
+                <Panel key={orderId} eventKey={orderId}>
+                    <Panel.Heading >
+                        <Panel.Title toggle>
+                            Order #{orderId}
+                        </Panel.Title>
+                    </Panel.Heading>
+                    <LazyLoad height={0} offset={100} once>
+                    <Panel.Body collapsible>
+                            <OrderDetail orderId={orderId} />
+                    </Panel.Body>
+                    </LazyLoad>
+                </Panel>
             );
         });
 
@@ -41,6 +47,9 @@ class Order extends React.Component {
             <React.Fragment>
                 {orders}
             </React.Fragment>
+            // <PanelGroup accordion>
+            //     {orders}
+            // </PanelGroup>
         );
     }
 }
@@ -51,7 +60,7 @@ Order.propTypes = {
             orderId: PropTypes.oneOfType([
                 PropTypes.string])
         })
-    })
+    }),
 };
 
 export default Order;
