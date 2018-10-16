@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, PanelGroup } from 'react-bootstrap';
 import LazyLoad from 'react-lazyload';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -28,7 +28,7 @@ class Order extends React.Component {
             const orderId = item.OrderID;
             return (
                 <Panel key={orderId} eventKey={orderId}>
-                    <Panel.Heading >
+                    <Panel.Heading>
                         <Panel.Title toggle>
                             Order #{orderId}
                         </Panel.Title>
@@ -44,12 +44,9 @@ class Order extends React.Component {
         });
 
         return (
-            <React.Fragment>
+            <PanelGroup id="order-detail-list">
                 {orders}
-            </React.Fragment>
-            // <PanelGroup accordion>
-            //     {orders}
-            // </PanelGroup>
+            </PanelGroup>
         );
     }
 }
