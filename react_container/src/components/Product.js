@@ -10,8 +10,7 @@ class Product extends React.Component {
     }
 
     componentDidMount() {
-        const { productId } = this.props;
-        axios.get(`/api/product/${productId}`)
+        axios.get(`/api/product/${this.props.productId}`)
             .then(res => this.setState({ data: res.data }))
             .catch(err => console.log(`Err: ${err}`));
     }
