@@ -25,11 +25,6 @@ class OrderDetail extends React.Component {
                     <Product productId={productId} />
                     <ListGroupItem>Qty: {product.Quantity}</ListGroupItem>
                 </ListGroup>
-                // <p key={productId}>
-                //     <li>Product ID: {productId}</li>
-                //     {/* <Product productId={productId} /> */}
-                //     <li>Qty: {product.Quantity}</li>
-                // </p>
             );
         });
 
