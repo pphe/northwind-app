@@ -17,10 +17,7 @@
   - [ ] Service layer to simplify POSTs
   - [ ] Test API
   - [ ] \(Optional) Look into test libraries for experience
-
-- Implement REST API with Spring Boot
-  - Details TBD
-    
+ 
 - Write front-end components - React
   - [x] NavigationBar
   - [x] Orders
@@ -29,3 +26,7 @@
   - [x] Categories
   - [ ] Customers
   - [ ] etc..
+
+- Implement REST API with Spring Boot (to test modularity)
+  - Details TBD
+
