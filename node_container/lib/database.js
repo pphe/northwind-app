@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const dbHost = process.env.DB_HOST;
-const dbName = process.env.DB_NAME;
+// if no .env file, default to docker networking info
+const dbHost = process.env.DB_HOST || '172.17.0.2';
+const dbPort = process.env.DB_PORT || '27017';
+const dbName = process.env.DB_NAME || 'Northwind';
 
 class Database {
     constructor() {
@@ -12,7 +14,7 @@ class Database {
     connect() {
         mongoose.set('useCreateIndex', true);
         mongoose.set('useNewUrlParser', true);
-        mongoose.connect(`mongodb://${dbHost}/${dbName}`)
+        mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`)
             .then(() => {
                 console.log(`Connected to ${dbName} database`);
             })

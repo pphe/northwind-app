@@ -3,7 +3,7 @@ require('./lib/database');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.SERVER_PORT || 3000;
+const port = process.env.SERVER_PORT || 8000;
 
 // middleware
 app.use('/api/category', require('./routes/category'));
