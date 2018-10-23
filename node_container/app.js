@@ -21,7 +21,6 @@ app.listen(port, () => {
 });
 
 // remaining services and routers to add
-// const ProductModel = require('../models/product');
 // const RegionModel = require('../models/region');
 // const ShipperModel = require('../models/shipper');
 // const SupplierModel = require('../models/supplier');
