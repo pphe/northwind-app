@@ -13,7 +13,7 @@
   - [x] Database class for Mongoose
   - [x] Create data models
   - [ ] Routing
-  - [ ] Service layer to simplify database queries
+  - [x] Service layer to simplify database queries
   - [ ] Test API
   - [ ] \(Optional) Look into test libraries for experience
 
@@ -22,11 +22,9 @@
     
 - Write front-end components - React
   - [x] NavigationBar
-  - [ ] Orders
-  - [ ]   -Basic Styling
-  - [ ]   -Only load order details for expanded items
-  - [ ] Order Details
-  - [ ] Product 
-  - [ ] Categories
+  - [x] Orders
+  - [x] Order Details
+  - [x] Product 
+  - [x] Categories
   - [ ] Customers
   - [ ] etc..
