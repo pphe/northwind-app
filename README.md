@@ -5,6 +5,7 @@
 - Uses GNU make to simplify tasks
   - From the root directory, running `make all` will get everything going so you can visit `http://localhost:3000` to look around
   - To tear down, simply run `make clean` which is an alias for `make reset`
+  - Check the other targets in the `Makefile` for more granular control
 
 ## Mongo Information - mongo_container
 - Database instance runs in a Docker container and is published on the default port 27017
@@ -13,11 +14,15 @@
 ## Node/Express Information - node_container
 - Uses a `.env` file but if it doesn't exist
   - Express will default to port `8000` in `app.js`
-  - Mongoose will default to host `172.17.0.2`, port `27017` with database name `Northwind` in `lib/database.js`
-- The defaults are to simplify network communication if running all components inside Docker containers
+  - Mongoose will default to the following in `lib/database.js`:
+    - Host `172.17.0.2`
+    - Port `27017`
+    - Database Name `Northwind`
+- The defaults are to simplify network communication in bridged mode if running all components inside Docker containers (strictly for dev environments)
 
 ## React Information - react_container
-- In `package.json`, use `"proxy": "http://172.17.0.3:8000/"` if running component in a Docker container, or `"proxy": "http://localhost:8000"` if you are working on code, i.e. running the app locally.
+- If you want to run the component in Docker with communication between containers, in `package.json` use `"proxy": "http://172.17.0.3:8000/"`
+- If you are working on code, i.e. running the app locally, use `"proxy": "http://localhost:8000"` in `package.json` instead
   
 ## To Do
 - Implement REST API with Node.js
