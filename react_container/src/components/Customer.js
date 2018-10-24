@@ -1,4 +1,5 @@
 import React from 'react';
+import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import CustomerModal from './CustomerModal';
 import axios from 'axios';
 
@@ -40,16 +41,20 @@ class Customer extends React.Component {
     render() {
         const customers = this.state.data.map(customer => {
             return (
-                <li key={customer.CustomerID}
+                <ListGroupItem key={customer.CustomerID}
                     onClick={() => this.setCurrentCustomer(customer)}>
                     {customer.CompanyName}
-                </li>
+                </ListGroupItem>
             );
         });
 
         return (
             <div>
-                {customers}
+                <Panel>
+                    <ListGroup>
+                        {customers}
+                    </ListGroup>
+                </Panel>
 
                 {
                     this.state.showModal
@@ -61,7 +66,7 @@ class Customer extends React.Component {
                         />
                         : null
                 }
-            </div >
+            </div>
         );
     }
 }
