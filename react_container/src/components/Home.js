@@ -11,6 +11,10 @@ class Home extends React.Component {
         return (
             <div>
                 <Panel>
+                    <Panel.Heading>
+                        <Panel.Title>What is Northwind?</Panel.Title>
+                    </Panel.Heading>
+
                     <Panel.Body>Northwind Traders is a sample
                     database that shipped with the Microsoft Office suite.
                     The Northwind database contains the sales data for
