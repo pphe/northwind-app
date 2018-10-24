@@ -5,14 +5,16 @@ import { Modal, Button } from 'react-bootstrap';
 class CustomerModal extends React.Component {
     render() {
         const customer = Object.assign({}, this.props.customer);
-        
+
         for (let key in customer) {
             if (customer[key] === "NULL")
                 delete customer[key];
         }
 
         return (
-            <Modal show={this.props.show} onHide={this.props.handleClose}>
+            <Modal show={this.props.show}
+                bsSize="small"
+                onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {this.props.customer.CompanyName}
@@ -29,9 +31,11 @@ class CustomerModal extends React.Component {
                             {customer.Address}
                         </li>
                         <li>
-                            {customer.City} {customer.PostalCode}, {customer.Region}, {customer.Country}
+                            {customer.City ? customer.City : null}
+                            {customer.Region ? ', ' + customer.Region : null}
+                            {customer.PostalCode ? ' ' + customer.PostalCode : null}
                         </li>
-
+                        <li>{customer.Country ? customer.Country : null}</li>
                         <li>{customer.Phone}</li>
                     </ul>
                 </Modal.Body>
