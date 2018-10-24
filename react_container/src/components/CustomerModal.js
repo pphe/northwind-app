@@ -4,14 +4,36 @@ import { Modal, Button } from 'react-bootstrap';
 
 class CustomerModal extends React.Component {
     render() {
+        const customer = Object.assign({}, this.props.customer);
+        
+        for (let key in customer) {
+            if (customer[key] === "NULL")
+                delete customer[key];
+        }
+
         return (
             <Modal show={this.props.show} onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
-                    {this.props.customer.CompanyName}
+                    <Modal.Title>
+                        {this.props.customer.CompanyName}
+                    </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    {JSON.stringify(this.props.customer)}
+                    <strong>Contact Info</strong>
+                    <ul className="list-unstyled">
+                        <li>
+                            {customer.ContactName} ({customer.ContactTitle})
+                        </li>
+                        <li>
+                            {customer.Address}
+                        </li>
+                        <li>
+                            {customer.City} {customer.PostalCode}, {customer.Region}, {customer.Country}
+                        </li>
+
+                        <li>{customer.Phone}</li>
+                    </ul>
                 </Modal.Body>
 
                 <Modal.Footer>
