@@ -40,7 +40,7 @@
   - [x] Order Details
   - [x] Product 
   - [x] Categories
-  - [ ] Customers
+  - [x] Customers
   - [ ] etc..
 
 - Implement REST API with Spring Boot (to test modularity)
