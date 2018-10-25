@@ -1,6 +1,7 @@
 # Northwind App
 
 ## General Information
+- First, make sure GNU make, Docker, and Node are installed on your system
 - Docker images used: *mongo:latest*
 - Uses GNU make to simplify tasks
   - From the root directory, running `make all` will get everything going so you can visit `http://localhost:3000` to look around
