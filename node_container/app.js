@@ -14,7 +14,10 @@ app.use('/api/order', require('./routes/order'));
 app.use('/api/product', require('./routes/product'));
 
 // response for invalid paths
-app.use('/*', (req, res) => res.json('Nothing to see here :('));
+app.use('/*', (req, res) => {
+    res.writeHead(404);
+    res.end('Nothing to see here :(');
+});
 
 app.listen(port, () => {
     console.log('Express server started on port', port);
