@@ -18,10 +18,16 @@ class Order extends React.Component {
         orderId
             ? axios.get(`/api/order/${orderId}`)
                 .then(res => this.setState({ data: res.data }))
-                .catch(err => console.log(`Err: ${err}`))
-            : axios.get('/api/order', { cancelToken : this._source.token })
+                .catch(err => {
+                    if (!axios.isCancel(err))
+                        console.log(`Err: ${err}`)
+                })
+            : axios.get('/api/order', { cancelToken: this._source.token })
                 .then(res => this.setState({ data: res.data }))
-                .catch(err => console.log(`Err: ${err}`));
+                .catch(err => {
+                    if (!axios.isCancel(err))
+                        console.log(`Err: ${err}`)
+                });
     }
 
     componentWillUnmount() {
