@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 require('./lib/database');
 require('dotenv').config();
 
@@ -6,6 +7,7 @@ const app = express();
 const port = process.env.SERVER_PORT || 8000;
 
 // middleware
+app.use(morgan('dev'));
 app.use('/api/category', require('./routes/category'));
 app.use('/api/customer', require('./routes/customer'));
 app.use('/api/employee-territory', require('./routes/employee-territory'));
