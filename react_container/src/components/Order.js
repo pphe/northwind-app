@@ -21,13 +21,13 @@ class Order extends React.Component {
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => {
                     if (!axios.isCancel(err))
-                        console.log(`Err: ${err}`)
+                        console.log(`Err: ${err}`);
                 })
             : axios.get('/api/order', { cancelToken: this._source.token })
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => {
                     if (!axios.isCancel(err))
-                        console.log(`Err: ${err}`)
+                        console.log(`Err: ${err}`);
                 });
     }
 
