@@ -16,7 +16,8 @@ class Order extends React.Component {
         const { orderId } = this.props.match.params;
 
         orderId
-            ? axios.get(`/api/order/${orderId}`)
+            ? axios.get(`/api/order/${orderId}`,
+                { cancelToken: this._source.token })
                 .then(res => this.setState({ data: res.data }))
                 .catch(err => {
                     if (!axios.isCancel(err))
