@@ -11,6 +11,7 @@ class Customer extends React.Component {
             showModal: false,
             currentCustomer: {}
         };
+        this._source = axios.CancelToken.source();
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -33,9 +34,16 @@ class Customer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/customer')
+        axios.get('/api/customer', { cancelToken: this._source.token })
             .then(res => this.setState({ data: res.data }))
-            .catch(err => console.log(`Err: ${err}`));
+            .catch(err => {
+                if (!axios.isCancel(err))
+                    console.log(`Err: ${err}`);
+            });
+    }
+
+    componentWillUnmount() {
+        this._source.cancel();
     }
 
     render() {
