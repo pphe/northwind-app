@@ -24,7 +24,7 @@ describe('Order Component', () => {
         expect(wrapper.find(ListGroupItem).length).toBeGreaterThan(0);
         wrapper.unmount();
     });
-    // 22,26,30,38,53
+    
     it('customer renders <CustomerModal />', () => {
         const wrapper = mount(<Customer />);
         wrapper.setState({
