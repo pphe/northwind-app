@@ -8,7 +8,7 @@ import { CustomerModal } from '..';
 configure({ adapter: new Adapter() });
 
 describe('CustomerModal Component', () => {
-    const cust = {
+    const mockCustomer = {
         CustomerID: "ANATR",
         CompanyName: "Ana Trujillo Emparedados y helados",
         ContactName: "Ana Trujillo",
@@ -23,26 +23,32 @@ describe('CustomerModal Component', () => {
     };
 
     it('customermodal renders show true', () => {
-        const wrapper = shallow(<CustomerModal customer={cust}
+        const wrapper = shallow(<CustomerModal customer={mockCustomer}
             show={true} handleClose={() => { }} />);
         expect(wrapper.exists()).toBe(true);
     });
 
     it('customermodal renders show false', () => {
-        const wrapper = shallow(<CustomerModal customer={cust}
+        const wrapper = shallow(<CustomerModal customer={mockCustomer}
             show={false} handleClose={() => { }} />);
         expect(wrapper.exists()).toBe(true);
     });
 
     it('customermodal has <Modal /> child', () => {
-        const wrapper = shallow(<CustomerModal customer={cust}
+        const wrapper = shallow(<CustomerModal customer={mockCustomer}
             show={false} handleClose={() => { }} />);
         expect(wrapper.find(Modal).length).toEqual(1);
     });
 
+    it('customermodal has customer info in <li /> elements', () => {
+        const wrapper = mount(<CustomerModal customer={mockCustomer}
+            show={true} handleClose={() => { }} />);
+        expect(wrapper.find('li').length).toBeGreaterThan(1);
+    });
+
     it('customermodal button click', () => {
         const mockOnClick = sinon.spy();
-        const wrapper = mount(<CustomerModal customer={cust}
+        const wrapper = mount(<CustomerModal customer={mockCustomer}
             show={true} handleClose={mockOnClick} />);
         wrapper.find(Button).simulate('click');
         expect(mockOnClick.calledOnce).toBeTruthy();
