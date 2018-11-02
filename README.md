@@ -7,6 +7,7 @@
   - From the root directory, running `make all` will get everything going so you can visit `http://localhost:3000` to look around
   - To tear down, simply run `make clean` which is an alias for `make reset`
   - Check the other targets in the `Makefile` for more granular control
+- I'm not much of a frontend guy so don't mind the bootstrap styling
 
 ## Mongo Information - mongo_container
 - Database instance runs in a Docker container and is published on the default port 27017
@@ -42,6 +43,7 @@
   - [x] Product 
   - [x] Categories
   - [x] Customers
+  - [x] Write tests using Jest/Enzyme/Sinon
   - [ ] etc..
 
 - Implement REST API with Spring Boot (to test modularity)
