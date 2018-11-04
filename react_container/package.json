@@ -23,6 +23,7 @@
   },
   "proxy": "http://172.17.0.3:8000/",
   "devDependencies": {
+    "axios-mock-adapter": "^1.15.0",
     "babel-eslint": "^9.0.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
