@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { configure, mount, shallow } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import { CustomerModal } from '..';
@@ -37,21 +37,20 @@ describe('CustomerModal Component', () => {
     it('customermodal has <Modal /> child', () => {
         const wrapper = shallow(<CustomerModal customer={mockCustomer}
             show={false} handleClose={() => { }} />);
-        expect(wrapper.find(Modal).length).toEqual(1);
+        expect(wrapper.find(Modal)).toHaveLength(1);
     });
 
     it('customermodal has customer info in <li /> elements', () => {
-        const wrapper = mount(<CustomerModal customer={mockCustomer}
+        const wrapper = shallow(<CustomerModal customer={mockCustomer}
             show={true} handleClose={() => { }} />);
         expect(wrapper.find('li').length).toBeGreaterThan(1);
     });
 
-    it('customermodal button click', () => {
+    it('customermodal close button click', () => {
         const mockOnClick = sinon.spy();
-        const wrapper = mount(<CustomerModal customer={mockCustomer}
+        const wrapper = shallow(<CustomerModal customer={mockCustomer}
             show={true} handleClose={mockOnClick} />);
         wrapper.find(Button).simulate('click');
         expect(mockOnClick.calledOnce).toBeTruthy();
-        wrapper.unmount();
     });
 });

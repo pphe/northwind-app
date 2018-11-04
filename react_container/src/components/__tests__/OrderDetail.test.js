@@ -1,6 +1,8 @@
 import React from 'react';
-import { configure, shallow, mount } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { ListGroupItem } from 'react-bootstrap';
 import { OrderDetail, Product } from '..';
 
@@ -13,24 +15,29 @@ describe('OrderDetail Component', () => {
         Quantity: 9
     }];
 
-    it('order detail renders', () => {
+    it('orderdetail renders', () => {
         const wrapper = shallow(<OrderDetail />);
         expect(wrapper.exists()).toBe(true);
+        wrapper.unmount();
     });
 
-    it('OrderDetail renders the details (products) for an order', () => {
-        const wrapper = mount(<OrderDetail orderId={10249} />);
+    it('orderdetail renders the details (products) for an order', () => {
+        const wrapper = shallow(<OrderDetail orderId={10249} />);
         wrapper.setState({ data: mockOrderDetail });
-        wrapper.update();
         expect(wrapper.find(ListGroupItem).length).toBeGreaterThan(0);
-        wrapper.unmount();
     });
 
-    it('OrderDetail renders the Product component(s) for an order', () => {
-        const wrapper = mount(<OrderDetail orderId={10249} />);
+    it('orderdetail renders the Product component(s) for an order', () => {
+        const wrapper = shallow(<OrderDetail orderId={10249} />);
         wrapper.setState({ data: mockOrderDetail });
-        wrapper.update();
         expect(wrapper.find(Product).length).toBeGreaterThan(0);
-        wrapper.unmount();
+    });
+
+    it('orderdetail componentDidMount() sets state.data after fetchOrderDetails()', () => {
+        const mockAxios = new MockAdapter(axios);
+        mockAxios.onGet('/api/order-detail/10249').reply(200, mockOrderDetail);
+        const wrapper = shallow(<OrderDetail orderId={10249} />);
+        return wrapper.instance().fetchOrderDetails(10249)
+            .then(() => expect(wrapper.state('data')).toEqual(mockOrderDetail));
     });
 });
