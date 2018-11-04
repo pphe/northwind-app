@@ -10,25 +10,36 @@ class Order extends React.Component {
         super(props);
         this.state = { data: [] };
         this._source = axios.CancelToken.source();
+        this.fetchSingleOrder = this.fetchSingleOrder.bind(this);
+        this.fetchAllOrders = this.fetchAllOrders.bind(this);
+        this.errorHandler = this.errorHandler.bind(this);
+    }
+
+    errorHandler(err) {
+        if (!axios.isCancel(err))
+            console.log(`Err: ${err}`);
+    }
+
+    fetchSingleOrder(orderId) {
+        return axios.get(`/api/order/${orderId}`,
+            { cancelToken: this._source.token });
+    }
+
+    fetchAllOrders() {
+        return axios.get('/api/order',
+            { cancelToken: this._source.token });
     }
 
     componentDidMount() {
         const { orderId } = this.props.match.params;
 
         orderId
-            ? axios.get(`/api/order/${orderId}`,
-                { cancelToken: this._source.token })
+            ? this.fetchSingleOrder(orderId)
                 .then(res => this.setState({ data: res.data }))
-                .catch(err => {
-                    if (!axios.isCancel(err))
-                        console.log(`Err: ${err}`);
-                })
-            : axios.get('/api/order', { cancelToken: this._source.token })
+                .catch(this.errorHandler)
+            : this.fetchAllOrders()
                 .then(res => this.setState({ data: res.data }))
-                .catch(err => {
-                    if (!axios.isCancel(err))
-                        console.log(`Err: ${err}`);
-                });
+                .catch(this.errorHandler);
     }
 
     componentWillUnmount() {

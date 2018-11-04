@@ -9,16 +9,24 @@ class OrderDetail extends React.Component {
         super(props);
         this.state = { data: [] };
         this._source = axios.CancelToken.source();
+        this.fetchOrderDetails = this.fetchOrderDetails.bind(this);
+        this.errorHandler = this.errorHandler.bind(this);
+    }
+
+    errorHandler(err) {
+        if (!axios.isCancel(err))
+            console.log(`${err}`);
+    }
+
+    fetchOrderDetails(orderId) {
+        return axios.get(`/api/order-detail/${orderId}`,
+            { cancelToken: this._source.token });
     }
 
     componentDidMount() {
-        axios.get(`/api/order-detail/${this.props.orderId}`,
-            { cancelToken: this._source.token })
+        this.fetchOrderDetails(this.props.orderId)
             .then(res => this.setState({ data: res.data }))
-            .catch(err => {
-                if (!axios.isCancel(err))
-                    console.log(`Err: ${err}`);
-            });
+            .catch(this.errorHandler);
     }
 
     componentWillUnmount() {

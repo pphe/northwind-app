@@ -16,6 +16,8 @@ class Customer extends React.Component {
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.setCurrentCustomer = this.setCurrentCustomer.bind(this);
+        this.handleError = this.handleError.bind(this);
+        this.fetchCustomers = this.fetchCustomers.bind(this);
     }
 
     handleClose() {
@@ -33,13 +35,19 @@ class Customer extends React.Component {
         });
     }
 
+    handleError(err) {
+        if (!axios.isCancel(err))
+            console.log(`Err: ${err}`);
+    }
+
+    fetchCustomers() {
+        return axios.get('/api/customer', { cancelToken: this._source.token })
+    }
+
     componentDidMount() {
-        axios.get('/api/customer', { cancelToken: this._source.token })
+        this.fetchCustomers()
             .then(res => this.setState({ data: res.data }))
-            .catch(err => {
-                if (!axios.isCancel(err))
-                    console.log(`Err: ${err}`);
-            });
+            .catch(this.handleError);
     }
 
     componentWillUnmount() {

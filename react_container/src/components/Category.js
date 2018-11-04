@@ -7,15 +7,23 @@ class Category extends React.Component {
         super(props);
         this.state = { data: [] };
         this._source = axios.CancelToken.source();
+        this.fetchCategories = this.fetchCategories.bind(this);
+        this.handleError = this.errorHandler.bind(this);
+    }
+
+    errorHandler(err) {
+        if (!axios.isCancel(err))
+            console.log(`${err}`);
+    }
+
+    fetchCategories() {
+        return axios.get('/api/category', { cancelToken: this._source.token });
     }
 
     componentDidMount() {
-        axios.get('/api/category', { cancelToken: this._source.token })
+        this.fetchCategories()
             .then(res => this.setState({ data: res.data }))
-            .catch(err => {
-                if (!axios.isCancel(err))
-                    console.log(`Err: ${err}`);
-            });
+            .catch(this.errorHandler);
     }
 
     componentWillUnmount() {
@@ -52,6 +60,5 @@ class Category extends React.Component {
         );
     }
 }
-
 
 export default Category;

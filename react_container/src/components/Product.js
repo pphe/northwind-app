@@ -8,16 +8,24 @@ class Product extends React.Component {
         super(props);
         this.state = { data: [] };
         this._source = axios.CancelToken.source();
+        this.fetchProduct = this.fetchProduct.bind(this);
+        this.errorHandler = this.errorHandler.bind(this);
+    }
+
+    errorHandler(err) {
+        if (!axios.isCancel(err))
+            console.log(`${err}`);
+    }
+
+    fetchProduct(productId) {
+        return axios.get(`/api/product/${productId}`,
+            { cancelToken: this._source.token });
     }
 
     componentDidMount() {
-        axios.get(`/api/product/${this.props.productId}`,
-            { cancelToken: this._source.token })
+        this.fetchProduct(this.props.productId)
             .then(res => this.setState({ data: res.data }))
-            .catch(err => {
-                if (!axios.isCancel(err))
-                    console.log(`Err: ${err}`);
-            });
+            .catch(this.errorHandler);
     }
 
     componentWillUnmount() {
