@@ -48,24 +48,15 @@ describe('Customer Component', () => {
         });
     });
 
-    it('handleClose() cb sets showModal state to false', () => {
+    it('toggleModal() cb sets showModal state to false', () => {
         const wrapper = shallow(<Customer />);
         wrapper.setState({
             showModal: true
         });
-        wrapper.instance().handleClose();
+        wrapper.instance().toggleModal();
         expect(wrapper.state('showModal')).toBe(false);
     });
-
-    it('handleShow() cb sets CustomerModal show prop to true', () => {
-        const wrapper = shallow(<Customer />);
-        wrapper.setState({
-            showModal: false,
-        });
-        wrapper.instance().handleShow();
-        expect(wrapper.state('showModal')).toBe(true);
-    });
-
+    
     it('customer componentDidMount() sets state.data after ajax', () => {
         const mockAxios = new MockAdapter(axios);
         mockAxios.onGet('/api/customer').reply(200, mockCustomer);

@@ -12,20 +12,14 @@ class Customer extends React.Component {
             currentCustomer: {}
         };
         this._source = axios.CancelToken.source();
-
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
         this.setCurrentCustomer = this.setCurrentCustomer.bind(this);
         this.handleError = this.handleError.bind(this);
         this.fetchCustomers = this.fetchCustomers.bind(this);
     }
 
-    handleClose() {
-        this.setState({ showModal: false });
-    }
-
-    handleShow() {
-        this.setState({ showModal: true });
+    toggleModal() {
+        this.setState({ showModal: !this.state.showModal });
     }
 
     setCurrentCustomer(customer) {
@@ -77,8 +71,7 @@ class Customer extends React.Component {
                         ? <CustomerModal
                             customer={this.state.currentCustomer}
                             show={this.state.showModal}
-                            handleShow={this.handleShow}
-                            handleClose={this.handleClose}
+                            toggleModal={this.toggleModal}
                         />
                         : null
                 }

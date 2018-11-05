@@ -24,32 +24,32 @@ describe('CustomerModal Component', () => {
 
     it('customermodal renders show true', () => {
         const wrapper = shallow(<CustomerModal customer={mockCustomer}
-            show={true} handleClose={() => { }} />);
+            show={true} toggleModal={() => { }} />);
         expect(wrapper.exists()).toBe(true);
     });
 
     it('customermodal renders show false', () => {
         const wrapper = shallow(<CustomerModal customer={mockCustomer}
-            show={false} handleClose={() => { }} />);
+            show={false} toggleModal={() => { }} />);
         expect(wrapper.exists()).toBe(true);
     });
 
     it('customermodal has <Modal /> child', () => {
         const wrapper = shallow(<CustomerModal customer={mockCustomer}
-            show={false} handleClose={() => { }} />);
+            show={false} toggleModal={() => { }} />);
         expect(wrapper.find(Modal)).toHaveLength(1);
     });
 
     it('customermodal has customer info in <li /> elements', () => {
         const wrapper = shallow(<CustomerModal customer={mockCustomer}
-            show={true} handleClose={() => { }} />);
+            show={true} toggleModal={() => { }} />);
         expect(wrapper.find('li').length).toBeGreaterThan(1);
     });
 
     it('customermodal close button click', () => {
         const mockOnClick = sinon.spy();
         const wrapper = shallow(<CustomerModal customer={mockCustomer}
-            show={true} handleClose={mockOnClick} />);
+            show={true} toggleModal={mockOnClick} />);
         wrapper.find(Button).simulate('click');
         expect(mockOnClick.calledOnce).toBeTruthy();
     });

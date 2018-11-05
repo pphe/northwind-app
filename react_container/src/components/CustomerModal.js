@@ -14,7 +14,7 @@ class CustomerModal extends React.Component {
         return (
             <Modal show={this.props.show}
                 bsSize="small"
-                onHide={this.props.handleClose}>
+                onHide={this.props.toggleModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {this.props.customer.CompanyName}
@@ -41,7 +41,7 @@ class CustomerModal extends React.Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={this.props.handleClose}>
+                    <Button onClick={this.props.toggleModal}>
                         Close
                     </Button>
                 </Modal.Footer>
@@ -53,8 +53,7 @@ class CustomerModal extends React.Component {
 CustomerModal.propTypes = {
     customer: PropTypes.object,
     show: PropTypes.bool,
-    handleShow: PropTypes.func,
-    handleClose: PropTypes.func
+    toggleModal: PropTypes.func
 };
 
 export default CustomerModal;
