@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/jest": "^23.3.9",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "merge": "^1.2.1",
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",
